@@ -119,7 +119,7 @@ router.post("/login", async (req, res, next) => {
   }
 // ? Usuario con los credeciales correctos.
   // ? Creamos ahora el token
-  // ! CREACIÓN DEL TOKEN
+  
 
   let token;
   try {
