@@ -9,7 +9,7 @@ const Usuario = require("../models/modelo-usuario");
 // * Crear nuevo usuario 
 router.post("/", async (req, res, next) => {
   console.log("Dentro");
-  const { nombreUsuario,cif, email, password, direccion, articulos,} = req.body;
+  const { nombreUsuario,cif, email, password, direccion, productos} = req.body;
   let existeUsuario;
   try {
     existeUsuario = await Usuario.findOne({
@@ -44,7 +44,7 @@ router.post("/", async (req, res, next) => {
       email,
       password: hashedPassword,
       direccion,
-      articulos:[],
+      productos,
     });
     try {
       await nuevoUsuario.save();
@@ -220,31 +220,6 @@ router.patch("/:id", async (req, res, next) => {
 });
 
 
-// router.patch("/:id/carrito", async(req,res,next)=> {
-//   let idUsuario = req.params.id;
-//   let idProductos = req.body.id;
-//   let carritoDelUsuario;
-//   let elProducto;
-  
-//   try{
-//     carritoDelUsuario = await Usuario.findById(idUsuario);
-//     elProducto = await Producto.findById(idProductos);
-//     carritoDelUsuario.carrito.push(elProducto);
-//     await carritoDelUsuario.save();
-//   }
-//   catch(error) {
-//     res.status(500).json({
-
-//       mensaje : `Error en el añadir el producto en el carrito`,
-//       error : error.message,
-//     })
-//     return next(error)
-//   }
-//   res.status(200).json({
-//     mensaje : `Ya esta añadido en el carrito`,
-//     carrito : carritoDelUsuario,
-//   })
-// })
 
 
 // * Eliminar un usuario
